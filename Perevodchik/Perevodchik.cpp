@@ -33,14 +33,14 @@ int main(int argc, char* argv[])
 
                 fse.getline(buffer, 200, '\t');
                 size_t k = 0;
-                for (;k < 200;++k)
+                for (;k < 100;++k)
                     if (buffer[k] == '\0')
                         break;
                 tmp[j - 1].en = new char[k + 1];
                 for (size_t counter = 0; counter < k + 1;++counter)
                     tmp[j - 1].en[counter] = buffer[counter];
 
-                fse.getline(buffer, 500, '\n');
+                fse.getline(buffer, 450, '\n');
                 k = 0;
                 for (;k < 500;++k)
                     if (buffer[k] == '\0')
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
     for (size_t i = 0; i < transstorage.size; i++)
     {
         std::cout << transstorage.data[i].en << " в переводе: " << transstorage.data[i].ru;
-        cout << "\n\n\n\n";
+        cout << "\n\n\n";
     }
     for (size_t i = 0; i < transstorage.size; i++)
     {
