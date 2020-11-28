@@ -1,14 +1,25 @@
 ﻿#include <iostream>
 #include <cstring>
 #include <fstream>
+#include <Windows.h>
+#include <stdio.h>
 
 
 using namespace std;
 
+
+
+const char* Rus(const char* str)
+{
+    static char s[1024];
+    CharToOem(str, s);
+    return s;
+}
+
 int main(int argc, char* argv[])
 {
-
-    setlocale(LC_ALL, "Russian");
+    
+    
     string s;
     struct Translation {
         char* ru;
@@ -19,13 +30,14 @@ int main(int argc, char* argv[])
         Translation* data;
     };
     Array transstorage = { 0,nullptr };
-    char buffer[500];
+    char buffer[450];
     ifstream fse;
-    fse.open("d.txt", ios_base::binary);
+    fse.open("slovar.txt", ios_base::binary);
     if (fse.is_open())
     {
         for (size_t j = 1; j < 1000000; j++)
         {
+           
             if (transstorage.size >= 0) {
                 if (fse.eof())
                     break;
@@ -66,7 +78,8 @@ int main(int argc, char* argv[])
     }
     for (size_t i = 0; i < transstorage.size; i++)
     {
-        std::cout << transstorage.data[i].en << " в переводе: " << transstorage.data[i].ru;
+        
+        std::cout << transstorage.data[i].en << Rus(" в переводе: ") << transstorage.data[i].ru;
         cout << "\n\n\n";
     }
     for (size_t i = 0; i < transstorage.size; i++)
